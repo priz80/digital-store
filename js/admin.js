@@ -70,6 +70,7 @@ function renderProducts() {
       <td class="actions">
         <button class="edit" data-id="${i}">Ред.</button>
         <button class="delete" data-id="${i}">Удалить</button>
+        <input type="checkbox" data-id="${i}">
       </td>
     `;
     tbody.appendChild(tr);
