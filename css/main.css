@@ -5,11 +5,30 @@
   box-sizing: border-box;
 }
 
+html,
 body {
+  height: 100%; /* Обязательно */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f9fafb;
   color: #111827;
   line-height: 1.6;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Минимум полная высота экрана */
+}
+
+.main-content {
+  flex: 1 0 auto; /* Занимает всё свободное пространство */
+}
+
+a {
+  /* text-decoration: none; */
+  /* color: #333;
+  font-weight: 500;
+  font-style: italic; */
 }
 
 /* Шапка */
@@ -290,4 +309,12 @@ body {
 .product-card .details-button:hover {
   background: #d1d5db;
   color: #1e3a8a;
+}
+
+
+.footer a {
+  text-align: center;
+  color: #333;
+  font-weight: 500;
+  font-style: italic;
 }
