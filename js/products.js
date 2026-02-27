@@ -113,6 +113,32 @@ function initFilters() {
   applyFilter();
 }
 
+/* function renderProducts(productsToRender) {
+  const container = document.getElementById('favorites');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  productsToRender.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.dataset.category = product.category;
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.title}">
+      <h3>${product.title}</h3>
+      <p>${product.platform}</p>
+      <div class="price">${product.price} ₽</div>
+      <button class="buy-button">Купить</button>
+      <a href="product.html?id=${product.id}" target="_blank" class="details-button">
+        Подробнее
+      </a>
+    `;
+    container.appendChild(card);
+  });
+
+  initPurchaseModal(); // Подключаем после рендера
+} */
+
 // === Синхронизация между вкладками ===
 window.addEventListener('storage', () => {
   initFilters();
