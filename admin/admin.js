@@ -29,6 +29,7 @@ function showAdminPanel() {
   if (loginSection) loginSection.style.display = "none";
 
   loadProducts(); // Загружаем товары
+  initForm();     // ✅ Подключаем обработчик формы!
 }
 
 // === Авторизация (второй уровень) ===
