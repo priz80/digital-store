@@ -207,3 +207,25 @@ th {
   border-color: #007bff;
   background: #f8f9fa;
 }
+
+.admin-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.logout-btn {
+  background: linear-gradient(to right, #d9534f, #c9302c);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #c9302c;
+}
