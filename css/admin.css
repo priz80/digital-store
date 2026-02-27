@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #d1d5db;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+/* Форма входа */
+.login-form,
+.add-product-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: grid;
+  gap: 8px;
+  /* grid-template-columns: 1fr 1fr; */
+  padding-bottom: 10px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field input,
+.form-field select {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.submit-btn {
+  background: #1e3a8a;
+  color: white;
+}
+
+.submit-btn:hover {
+  background: #1e40af;
+}
+
+.logout-btn {
+  background: #ef4444;
+  color: white;
+}
+
+/* Список товаров */
+.product-list {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.actions button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.edit {
+  background: #3b82f6;
+  color: white;
+}
+.delete {
+  background: #ef4444;
+  color: white;
+}
+
+/* Скрытие блоков */
+#loginSection {
+  display: block;
+}
+#adminSection {
+  display: none;
+}
+.hidden {
+  display: none !important;
+}
+
+.toggle-specs-btn,
+.template-btn,
+.clear-btn {
+  background: #f3f4f6;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s;
+}
+
+.toggle-specs-btn:hover,
+.template-btn:hover,
+.clear-btn:hover {
+  background: #e5e7eb;
+}
+
+.template-btn {
+  background: #dbeafe;
+  color: #1e3a8a;
+  border-color: #bfdbfe;
+}
+
+.template-btn:hover {
+  background: #bfdbfe;
+}
+
+.clear-btn {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fbbf24;
+}
+
+.clear-btn:hover {
+  background: #fbbf24;
+}
+
+.button-delete {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+ /*  background: inherit; */
+  color: red;
+  border: none;
+  border-radius: 50%;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.drop-area.highlight {
+  border-color: #007bff;
+  background: #f8f9fa;
+}
