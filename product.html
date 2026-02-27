@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Товар | DigitalStore</title>
+  <link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+
+<!-- Шапка -->
+<header class="header">
+  <div class="logo">DigitalStore</div>
+  <nav>
+    <a href="index.html">Каталог</a>
+    <a href="#support">Поддержка</a>
+  </nav>
+  <div class="user-actions">
+    <button>Войти</button>
+    <span class="cart-icon">🛒</span>
+  </div>
+</header>
+
+<!-- Основная информация о товаре -->
+<main class="product-page">
+  <div class="product-image-container">
+    <img id="product-image" src="" alt="Изображение товара">
+  </div>
+
+  <div class="product-info">
+    <h1 id="product-title">Загрузка...</h1>
+    <p class="subtitle" id="product-platform"></p>
+
+    <div class="price" id="product-price"></div>
+
+    <button class="buy-button" onclick="openPurchaseModal()">Купить и получить ключ</button>
+    <div class="guarantee">✅ Мгновенная доставка | 🛡️ Гарантия активации</div>
+  </div>
+</main>
+
+<!-- Описание и характеристики -->
+<section class="product-details">
+  <h2>Описание</h2>
+  <p id="product-description">
+    Здесь будет подробное описание товара. Например: Cyberpunk 2077 — это ролевой экшен от первого лица в футуристическом городе Найт-Сити. Вы играете за Ви — наёмника, который ищет способ изменить свою судьбу.
+  </p>
+
+  <!-- Системные требования (для игр/софта) -->
+  <div id="specs-section" style="display: none;">
+    <h2>Системные требования</h2>
+    <ul id="specs-list"></ul>
+  </div>
+</section>
+
+<!-- Похожие товары -->
+<section class="featured" style="padding: 4rem 5%; text-align: center;">
+  <h2>Похожие товары</h2>
+  <div class="product-grid" id="related-products"></div>
+</section>
+
+<!-- Ссылка "Назад" -->
+<div style="text-align: center; padding: 2rem;">
+  <a href="index.html" class="back-link">← Вернуться к каталогу</a>
+</div>
+
+<!-- Модальное окно покупки -->
+<div id="purchase-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <h2>Подтверждение покупки</h2>
+    <p><strong>Товар:</strong> <span id="modal-product-name"></span></p>
+    <p><strong>Цена:</strong> <span id="modal-product-price"></span></p>
+    <button id="confirm-purchase">Подтвердить оплату</button>
+
+    <div id="key-result" style="margin-top: 1.5rem; display: none;">
+      <h3>Оплата прошла успешно!</h3>
+      <p><strong>Ваш ключ:</strong></p>
+      <div id="generated-key" class="key-box"></div>
+      <button id="copy-key">Копировать ключ</button>
+      <p style="color: #059669; margin-top: 1rem;">✅ Ключ можно активировать в Steam. Гарантия 30 дней.</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/product.js"></script>
+
+</body>
+</html>
