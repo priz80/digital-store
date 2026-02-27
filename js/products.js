@@ -1,13 +1,13 @@
 // === Загрузка товаров ===
 function loadProducts() {
   const saved = localStorage.getItem('digitalStoreProducts');
-  const defaultProducts = [
-    { id: 1, title: "Cyberpunk 2077", price: "1 499", category: "game", platform: "PC | Steam", image: "https://via.placeholder.com/300x140?text=Cyberpunk+2077", isFavorite: true },
-    { id: 2, title: "Adobe Photoshop", price: "6 990", category: "software", platform: "Windows", image: "https://via.placeholder.com/300x140?text=Photoshop", isFavorite: false },
-    { id: 3, title: "Python для начинающих", price: "2 499", category: "course", platform: "Видео курс", image: "https://via.placeholder.com/300x140?text=Python+Курс", isFavorite: true },
-    { id: 4, title: "Spotify Premium", price: "1 999", category: "subscription", platform: "12 месяцев", image: "https://via.placeholder.com/300x140?text=Spotify", isFavorite: false }
-  ];
-  return saved ? JSON.parse(saved) : defaultProducts;
+//   const defaultProducts = [
+//     { id: 1, title: "Cyberpunk 2077", price: "1 499", category: "game", platform: "PC | Steam", image: "https://via.placeholder.com/300x140?text=Cyberpunk+2077", isFavorite: true },
+//     { id: 2, title: "Adobe Photoshop", price: "6 990", category: "software", platform: "Windows", image: "https://via.placeholder.com/300x140?text=Photoshop", isFavorite: false },
+//     { id: 3, title: "Python для начинающих", price: "2 499", category: "course", platform: "Видео курс", image: "https://via.placeholder.com/300x140?text=Python+Курс", isFavorite: true },
+//     { id: 4, title: "Spotify Premium", price: "1 999", category: "subscription", platform: "12 месяцев", image: "https://via.placeholder.com/300x140?text=Spotify", isFavorite: false }
+//   ];
+  return JSON.parse(saved);
 }
 
 // === Рендер всех товаров в #productGrid ===
