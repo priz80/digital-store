@@ -43,46 +43,54 @@
   </nav>
 </header>
 
-<!-- Главный экран -->
-<section class="hero">
-  <h1>Цифровые товары — мгновенная доставка</h1>
-  <p>Лицензионные ключи, программы, игры и курсы без ожидания</p>
-  <input type="text" placeholder="Найти товар..." class="search-bar" id="searchInput">
-</section>
+<main class="main-content">
+  <!-- Главный экран -->
+  <section class="hero">
+    <h1>Цифровые товары — мгновенная доставка</h1>
+    <p>Лицензионные ключи, программы, игры и курсы без ожидания</p>
+    <input type="text" placeholder="Найти товар..." class="search-bar" id="searchInput">
+  </section>
+  
+  <!-- Фильтры -->
+  <section class="filters">
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-category="all">Все</button>
+      <button class="filter-btn" data-category="game">Игры</button>
+      <button class="filter-btn" data-category="software">Программы</button>
+      <button class="filter-btn" data-category="course">Курсы</button>
+      <button class="filter-btn" data-category="subscription">Подписки</button>
+    </div>
+  </section>
+  
+  <!-- Все товары -->
+  <section class="featured">
+    <h2>Все товары</h2>
+    <div class="product-grid" id="productGrid">
+      <!-- Сюда попадёт весь каталог (с фильтрацией) -->
+    </div>
+  </section>
+  
+  <!-- Популярные товары -->
+  <section class="featured">
+    <h2>Популярное сегодня</h2>
+    <div class="product-grid" id="favorites">
+      <!-- Сюда попадут товары с isFavorite: true -->
+    </div>
+  </section>
+</main>
 
-<!-- Фильтры -->
-<section class="filters">
-  <div class="filter-buttons">
-    <button class="filter-btn active" data-category="all">Все</button>
-    <button class="filter-btn" data-category="game">Игры</button>
-    <button class="filter-btn" data-category="software">Программы</button>
-    <button class="filter-btn" data-category="course">Курсы</button>
-    <button class="filter-btn" data-category="subscription">Подписки</button>
-  </div>
-</section>
 
-<!-- Все товары -->
-<section class="featured">
-  <h2>Все товары</h2>
-  <div class="product-grid" id="productGrid">
-    <!-- Сюда попадёт весь каталог (с фильтрацией) -->
-  </div>
-</section>
 
-<!-- Популярные товары -->
-<section class="featured">
-  <h2>Популярное сегодня</h2>
-  <div class="product-grid" id="favorites">
-    <!-- Сюда попадут товары с isFavorite: true -->
-  </div>
-</section>
-
-<!-- Значки доверия -->
+<footer class="footer">
+  <!-- Значки доверия -->
 <section class="trust">
   <div class="badge">✅ Мгновенная доставка</div>
   <div class="badge">🔒 SSL-шифрование</div>
   <div class="badge">🛡️ Гарантия ключа</div>
 </section>
+  <a href="https://fastvps.ru/c_4295ba5d6a21fdd9e4d2b8a7fad98400" target="_blank"><p>Сайт работает на хостинге FastVPS - заказать хостинг.</p></a>
+</footer>
+
 <script src="js/header.js"></script>
 <script src="js/products.js"></script>
 <script src="js/modal.js"></script>
