@@ -10,7 +10,7 @@ const SPEC_FIELDS = {
 
 let products = [];
 
-// === DOM Elements (через $) ===
+// === DOM Elements ===
 function $(id) {
   return document.getElementById(id);
 }
@@ -70,13 +70,24 @@ function renderProducts() {
       <td class="actions">
         <button class="edit" data-id="${i}">Ред.</button>
         <button class="delete" data-id="${i}">Удалить</button>
-        <input type="checkbox" data-id="${i}">
+        <input type="checkbox" data-id="${i}" ${p.isFavorite ? 'checked' : ''}>
       </td>
     `;
     tbody.appendChild(tr);
   });
 
   attachButtons();
+  attachFavoriteCheckboxes(); // Подключаем чекбоксы
+}
+
+function attachFavoriteCheckboxes() {
+  document.querySelectorAll('input[type="checkbox"][data-id]').forEach(checkbox => {
+    checkbox.onchange = function () {
+      const id = this.dataset.id;
+      products[id].isFavorite = this.checked;
+      saveAndSync();
+    };
+  });
 }
 
 function getCategory(value) {
@@ -100,12 +111,10 @@ function initForm() {
     const title = form.title.value.trim();
     const price = parseFloat(form.price.value);
 
-    // Валидация
     if (!title) return alert("Введите название товара");
     if (!price || price <= 0) return alert("Введите корректную цену");
     if (price > 1000000) return alert("Цена слишком высокая");
 
-    // Сбор системных требований
     const specs = {};
     Object.keys(SPEC_FIELDS).forEach(key => {
       const el = $(key);
@@ -117,7 +126,6 @@ function initForm() {
       }
     });
 
-    // Создание товара
     const product = {
       id: Date.now(),
       title,
@@ -132,7 +140,6 @@ function initForm() {
       product.specs = specs;
     }
 
-    // Сохранение (добавление или обновление)
     const editId = form.dataset.editId;
     if (editId !== undefined) {
       products[editId] = product;
@@ -145,15 +152,14 @@ function initForm() {
   };
 }
 
-// === Загрузка изображения и превью ===
+// === Загрузка изображения ===
 document.getElementById("imageUpload").addEventListener("change", function (e) {
   const file = e.target.files[0];
   if (!file) return;
 
-  // Проверка размера (макс. 2 МБ)
   if (file.size > 2 * 1024 * 1024) {
     alert("Файл слишком большой. Максимум — 2 МБ.");
-    this.value = ""; // очистить выбор
+    this.value = "";
     return;
   }
 
@@ -176,11 +182,8 @@ function toggleSpecs() {
   if (!fields || !btn) return;
 
   const isHidden = fields.style.display === "none";
-
   fields.style.display = isHidden ? "block" : "none";
-  btn.textContent = isHidden
-    ? "❌ Скрыть системные требования"
-    : "⚙️ Показать системные требования";
+  btn.textContent = isHidden ? "❌ Скрыть системные требования" : "⚙️ Показать системные требования";
 }
 
 function resetForm() {
@@ -190,7 +193,6 @@ function resetForm() {
   form.reset();
   clearSpecInputs();
 
-  // Очистить hidden image и превью
   $("image").value = "";
   const preview = $("imagePreview");
   preview.src = "";
@@ -236,16 +238,14 @@ function editProduct(id) {
   $("platform").value = p.platform || "";
   $("description").value = p.description || "";
 
-  // Устанавливаем изображение
   if (p.image) {
-  $("image").value = p.image;
-  const preview = $("imagePreview");
-  preview.src = p.image;
-  preview.style.display = "block";
-  $("removeImgBtn").style.display = "block"; // ← показываем кнопку
-}
+    $("image").value = p.image;
+    const preview = $("imagePreview");
+    preview.src = p.image;
+    preview.style.display = "block";
+    $("removeImgBtn").style.display = "block";
+  }
 
-  // Системные требования
   const specs = p.specs || {};
   $("spec_os").value = specs["ОС"] || "";
   $("spec_cpu").value = specs["Процессор"] || "";
@@ -271,12 +271,11 @@ function deleteProduct(id) {
 
 function saveAndSync() {
   localStorage.setItem("digitalStoreProducts", JSON.stringify(products));
-  window.dispatchEvent(new Event("storage")); // Синхронизация
+  window.dispatchEvent(new Event("storage"));
   renderProducts();
 }
 
-// === Шаблоны для каждой категории ===
-
+// === Шаблоны ===
 function applyGameTemplate() {
   $("category").value = "game";
   $("platform").value = "PC | Steam";
@@ -286,10 +285,7 @@ function applyGameTemplate() {
   $("spec_ram").value = "8 ГБ";
   $("spec_gpu").value = "NVIDIA GTX 1050 / AMD Radeon RX 570";
   $("spec_storage").value = "50 ГБ";
-
-  if ($("specsFields").style.display === "none") {
-    toggleSpecs();
-  }
+  if ($("specsFields").style.display === "none") toggleSpecs();
 }
 
 function applySoftwareTemplate() {
@@ -301,10 +297,7 @@ function applySoftwareTemplate() {
   $("spec_ram").value = "4 ГБ";
   $("spec_gpu").value = "Интегрированная";
   $("spec_storage").value = "5 ГБ";
-
-  if ($("specsFields").style.display === "none") {
-    toggleSpecs();
-  }
+  if ($("specsFields").style.display === "none") toggleSpecs();
 }
 
 function applyCourseTemplate() {
@@ -316,10 +309,7 @@ function applyCourseTemplate() {
   $("spec_ram").value = "2 ГБ";
   $("spec_gpu").value = "Не требуется";
   $("spec_storage").value = "Доступ в интернет";
-
-  if ($("specsFields").style.display === "none") {
-    toggleSpecs();
-  }
+  if ($("specsFields").style.display === "none") toggleSpecs();
 }
 
 function applySubscriptionTemplate() {
@@ -331,10 +321,7 @@ function applySubscriptionTemplate() {
   $("spec_ram").value = "Не требуется";
   $("spec_gpu").value = "Не требуется";
   $("spec_storage").value = "Интернет-подключение";
-
-  if ($("specsFields").style.display === "none") {
-    toggleSpecs();
-  }
+  if ($("specsFields").style.display === "none") toggleSpecs();
 }
 
 function removeImage() {
@@ -346,13 +333,12 @@ function removeImage() {
   btn.style.display = "none";
 }
 
+// === Drag & Drop ===
 const dropArea = $("dropArea");
 const fileInput = $("imageUpload");
 
-// Клик по области
 dropArea.addEventListener("click", () => fileInput.click());
 
-// Перетаскивание
 ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
   dropArea.addEventListener(eventName, e => {
     e.preventDefault();
@@ -369,12 +355,12 @@ dropArea.addEventListener("drop", e => {
   const files = e.dataTransfer.files;
   if (files.length) {
     fileInput.files = files;
-    // Симулируем change
     const event = new Event("change");
     fileInput.dispatchEvent(event);
   }
 });
 
+// === Экспорт/Импорт ===
 function exportProducts() {
   const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(products, null, 2));
   const downloadAnchorNode = document.createElement('a');
