@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DigitalStore — Цифровые товары</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+
+<!-- Шапка -->
+<header class="header">
+  <div class="logo">DigitalStore</div>
+
+  <!-- Бургер-иконка (только на мобильных) -->
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Навигация -->
+  <nav class="nav" id="nav">
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+
+      <!-- Выпадающее меню Каталог -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Каталог ▼</a>
+        <ul class="dropdown-menu">
+          <li><a href="index.html?category=game">Игры</a></li>
+          <li><a href="index.html?category=software">Программы</a></li>
+          <li><a href="index.html?category=course">Курсы</a></li>
+          <li><a href="index.html?category=subscription">Подписки</a></li>
+        </ul>
+      </li>
+
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+      <li><a href="admin.html" target="_blank">Админка</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Главный экран -->
+<section class="hero">
+  <h1>Цифровые товары — мгновенная доставка</h1>
+  <p>Лицензионные ключи, программы, игры и курсы без ожидания</p>
+  <input type="text" placeholder="Найти товар..." class="search-bar" id="searchInput">
+</section>
+
+<!-- Фильтры -->
+<section class="filters">
+  <div class="filter-buttons">
+    <button class="filter-btn active" data-category="all">Все</button>
+    <button class="filter-btn" data-category="game">Игры</button>
+    <button class="filter-btn" data-category="software">Программы</button>
+    <button class="filter-btn" data-category="course">Курсы</button>
+    <button class="filter-btn" data-category="subscription">Подписки</button>
+  </div>
+</section>
+
+<!-- Популярные товары -->
+<section class="featured">
+  <h2>Популярное сегодня</h2>
+  <div class="product-grid" id="productGrid">
+    <!-- Товары будут загружены через JS -->
+  </div>
+</section>
+
+<!-- Значки доверия -->
+<section class="trust">
+  <div class="badge">✅ Мгновенная доставка</div>
+  <div class="badge">🔒 SSL-шифрование</div>
+  <div class="badge">🛡️ Гарантия ключа</div>
+</section>
+<script src="js/header.js"></script>
+<script src="js/products.js"></script>
+<script src="js/modal.js"></script>
+</body>
+</html>
