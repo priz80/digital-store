@@ -1,40 +1,41 @@
 // === Модальное окно покупки ===
 function initPurchaseModal() {
-  const buyButtons = document.querySelectorAll('.buy-button');
-  const modal = document.getElementById('purchase-modal') || createModal();
+  const buyButtons = document.querySelectorAll(".buy-button");
+  const modal = document.getElementById("purchase-modal") || createModal();
 
-  buyButtons.forEach(button => {
-    button.addEventListener('click', () => {
+  buyButtons.forEach((button) => {
+    button.addEventListener("click", () => {
       let title, price, productId;
 
-      const card = button.closest('.product-card');
+      const card = button.closest(".product-card");
       if (card) {
         // Кнопка на главной или в "похожих"
-        title = card.querySelector('h3').textContent;
-        price = card.querySelector('.price').textContent;
-        const link = card.querySelector('.details-button');
-        productId = new URL(link.href).searchParams.get('id');
+        title = card.querySelector("h3").textContent;
+        price = card.querySelector(".price").textContent;
+        const link = card.querySelector(".details-button");
+        productId = new URL(link.href).searchParams.get("id");
       } else {
         // Основная кнопка на product.html
-        title = document.getElementById('product-title')?.textContent || 'Неизвестно';
-        price = document.getElementById('product-price')?.textContent || '0 ₽';
+        title =
+          document.getElementById("product-title")?.textContent || "Неизвестно";
+        price = document.getElementById("product-price")?.textContent || "0 ₽";
         const urlParams = new URLSearchParams(window.location.search);
-        productId = urlParams.get('id');
+        productId = urlParams.get("id");
       }
 
       // Сохраняем ID товара для использования при подтверждении
       modal.dataset.productId = productId;
 
-      document.getElementById('modal-product-name').textContent = title;
-      document.getElementById('modal-product-price').textContent = price;
-      modal.style.display = 'flex';
+      document.getElementById("modal-product-name").textContent = title;
+      document.getElementById("modal-product-price").textContent = price;
+      modal.style.display = "flex";
     });
   });
 }
 
 function createModal() {
-  const modal = document.createElement('div');
-  modal.id = 'purchase-modal';
+  const modal = document.createElement("div");
+  modal.id = "purchase-modal";
   modal.style.cssText = `
     display: none;
     position: fixed;
@@ -69,17 +70,17 @@ function createModal() {
   document.body.appendChild(modal);
 
   // Закрытие по крестику
-  modal.querySelector('.modal-close').addEventListener('click', () => {
-    modal.style.display = 'none';
+  modal.querySelector(".modal-close").addEventListener("click", () => {
+    modal.style.display = "none";
   });
 
   // Закрытие по клику вне
-  window.addEventListener('click', e => {
-    if (e.target === modal) modal.style.display = 'none';
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
   });
 
   // Генерация ключа или ссылки
-document.getElementById('confirm-purchase').addEventListener('click', () => {
+  document.getElementById('confirm-purchase').addEventListener('click', () => {
   const productId = modal.dataset.productId;
   const products = JSON.parse(localStorage.getItem('digitalStoreProducts')) || [];
   const product = products.find(p => p.id == productId);
@@ -92,8 +93,8 @@ document.getElementById('confirm-purchase').addEventListener('click', () => {
     return;
   }
 
-  if (product.downloadUrl) {
-    // Показываем ссылку для скачивания
+  // ✅ Правильная проверка: не null, не undefined, не пустая строка
+  if (product.downloadUrl && product.downloadUrl.trim() !== "") {
     resultDiv.innerHTML = `
       <h3>Оплата прошла успешно!</h3>
       <p>📥 Ваш файл готов к загрузке:</p>
@@ -138,7 +139,6 @@ document.getElementById('confirm-purchase').addEventListener('click', () => {
       ">Копировать ключ</button>
     `;
 
-    // Копирование
     resultDiv.querySelector('#copy-key').onclick = () => {
       navigator.clipboard.writeText(key).then(() => {
         resultDiv.querySelector('#copy-key').textContent = 'Скопировано!';
