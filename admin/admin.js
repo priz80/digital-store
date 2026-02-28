@@ -167,7 +167,7 @@ function initForm() {
         }
       }
     });
-
+const downloadUrl = form.downloadUrl.value.trim();
     const product = {
       id: Date.now(),
       title,
@@ -177,6 +177,7 @@ function initForm() {
       image: form.image.value,
       description: form.description.value,
       downloadUrl: form.downloadUrl.value.trim() || undefined,
+      downloadUrl: downloadUrl ? downloadUrl : undefined,
     };
 
     if (Object.keys(specs).length > 0) {
