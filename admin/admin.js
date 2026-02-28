@@ -148,7 +148,7 @@ function initForm() {
     const price = parseFloat(form.price.value);
 
     if (!title) return alert("Введите название товара");
-    if (!price || price <= 0) return alert("Введите корректную цену");
+    if (!price || price < 0) return alert("Введите корректную цену");
     if (price > 1000000) return alert("Цена слишком высокая");
 
     const specs = {};
