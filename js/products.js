@@ -26,7 +26,6 @@ function renderProducts(productsToRender) {
   <h3>${product.title}</h3>
   <p>${product.platform}</p>
   <div class="price">${product.price} ₽</div>
-  ${product.downloadUrl ? '<small>Мгновенная загрузка</small>' : ''}
   <button class="buy-button">Купить</button>
   <a href="product.html?id=${product.id}" class="details-button">Подробнее</a>
 `;
