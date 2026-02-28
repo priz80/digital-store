@@ -24,12 +24,6 @@ body {
   flex: 1 0 auto; /* Занимает всё свободное пространство */
 }
 
-a {
-  /* text-decoration: none; */
-  /* color: #333;
-  font-weight: 500;
-  font-style: italic; */
-}
 
 /* Шапка */
 .header {
@@ -317,4 +311,8 @@ a {
   color: #333;
   font-weight: 500;
   font-style: italic;
+}
+
+.footer p {
+  padding: 20px;
 }
