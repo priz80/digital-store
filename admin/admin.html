@@ -191,6 +191,18 @@
               </div>
             </div>
 
+            <div class="form-field">
+              <label for="downloadUrl"
+                >Ссылка для скачивания (опционально)</label
+              >
+              <input
+                type="url"
+                id="downloadUrl"
+                placeholder="https://example.com/game.zip"
+              />
+              <small>Оставьте пустым, если используется ключ активации</small>
+            </div>
+
             <!-- Системные требования -->
             <div class="form-row" style="grid-template-columns: 1fr">
               <button
@@ -274,6 +286,9 @@
                 <th>Цена</th>
                 <th>Категория</th>
                 <th>Действия</th>
+                <th>Популярные</th>
+                <th>Тип товара</th>
+                
               </tr>
             </thead>
             <tbody></tbody>
@@ -288,10 +303,12 @@
             📤 Импорт товаров
           </button>
         </div>
+        <div class="admin-footer">
+          <button type="button" class="logout-btn" onclick="logout()">
+            Выход
+          </button>
+        </div>
       </section>
-    </div>
-    <div class="admin-footer">
-      <button type="button" class="logout-btn" onclick="logout()">Выход</button>
     </div>
 
     <!-- Подключаем скрипт -->
