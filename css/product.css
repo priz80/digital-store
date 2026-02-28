@@ -5,11 +5,19 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9fafb;
+  height: 100%; /* Обязательно */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
   color: #111827;
   line-height: 1.6;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Минимум полная высота экрана */
 }
 
 /* Шапка */
@@ -60,6 +68,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
+  flex: 1 0 auto; 
 }
 
 .product-image-container img {
@@ -143,7 +152,7 @@ body {
 #specs-list li {
   margin-bottom: 0.75rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
 }
 
 #specs-list li::before {
@@ -273,4 +282,26 @@ body {
   .user-actions {
     margin-top: 0.5rem;
   }
+}
+
+/* Значки доверия */
+.trust {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: #eff6ff;
+  color: #1e3a8a;
+  font-size: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer a {
+  text-align: center;
+  color: #333;
+  font-weight: 500;
+  font-style: italic;
+}
+.footer p {
+  padding: 20px;
 }
