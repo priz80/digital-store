@@ -123,12 +123,14 @@ th {
   font-weight: 600;
 }
 
+
 .actions button {
   margin-right: 0.5rem;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   font-size: 0.9rem;
 }
+
 
 .edit {
   background: #3b82f6;
