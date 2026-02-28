@@ -24,7 +24,7 @@
         specsList.innerHTML = '';
         Object.entries(product.specs).forEach(([key, value]) => {
           const li = document.createElement('li');
-          li.innerHTML = `<strong>${key}:</strong> ${value}`;
+          li.innerHTML = `<strong>${key}:</strong>&nbsp;${value}`;
           specsList.appendChild(li);
         });
       }
