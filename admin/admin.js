@@ -43,7 +43,7 @@ async function login() {
   }
 
   const CORRECT_HASH =
-    "cebc35dde4d786bf16d4f581c5ba7e4f902be9be59c5b310dcc4a6dc94602eaf";
+    "";
 
   try {
     const hashed = await hashPassword(password);
