@@ -42,7 +42,8 @@ async function login() {
     return;
   }
 
-  const CORRECT_HASH = "";
+  const CORRECT_HASH =
+    "cebc35dde4d786bf16d4f581c5ba7e4f902be9be59c5b310dcc4a6dc94602eaf";
 
   try {
     const hashed = await hashPassword(password);
@@ -101,11 +102,14 @@ function renderProducts() {
       <td>${p.title}</td>
       <td>${p.price} ₽</td>
       <td>${getCategory(p.category)}</td>
+      
       <td class="actions">
         <button class="edit" data-id="${i}">Ред.</button>
         <button class="delete" data-id="${i}">Удалить</button>
-        <input type="checkbox" data-id="${i}" ${p.isFavorite ? "checked" : ""}>
       </td>
+
+      <td><input type="checkbox" data-id="${i}" ${p.isFavorite ? "checked" : ""}></td>
+      <td>${p.downloadUrl ? "Ссылка" : "Ключ активации"}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -172,6 +176,7 @@ function initForm() {
       platform: form.platform.value,
       image: form.image.value,
       description: form.description.value,
+      downloadUrl: form.downloadUrl.value.trim() || undefined,
     };
 
     if (Object.keys(specs).length > 0) {
