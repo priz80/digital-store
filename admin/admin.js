@@ -4,7 +4,7 @@ const SPEC_FIELDS = {
   spec_cpu: "Процессор",
   spec_ram: "Оперативная память",
   spec_gpu: "Видеокарта",
-  spec_storage: "Место на диске"
+  spec_storage: "Место на диске",
 };
 
 let products = [];
@@ -29,7 +29,7 @@ function showAdminPanel() {
   if (loginSection) loginSection.style.display = "none";
 
   loadProducts(); // Загружаем товары
-  initForm();     // ✅ Подключаем обработчик формы!
+  initForm(); // ✅ Подключаем обработчик формы!
 }
 
 // === Авторизация (второй уровень) ===
@@ -62,13 +62,11 @@ async function login() {
 async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   return Array.from(new Uint8Array(hashBuffer))
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('');
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
-
-  
 
 function logout() {
   // Удаляем флаг входа
@@ -106,7 +104,7 @@ function renderProducts() {
       <td class="actions">
         <button class="edit" data-id="${i}">Ред.</button>
         <button class="delete" data-id="${i}">Удалить</button>
-        <input type="checkbox" data-id="${i}" ${p.isFavorite ? 'checked' : ''}>
+        <input type="checkbox" data-id="${i}" ${p.isFavorite ? "checked" : ""}>
       </td>
     `;
     tbody.appendChild(tr);
@@ -117,13 +115,15 @@ function renderProducts() {
 }
 
 function attachFavoriteCheckboxes() {
-  document.querySelectorAll('input[type="checkbox"][data-id]').forEach(checkbox => {
-    checkbox.onchange = function () {
-      const id = this.dataset.id;
-      products[id].isFavorite = this.checked;
-      saveAndSync();
-    };
-  });
+  document
+    .querySelectorAll('input[type="checkbox"][data-id]')
+    .forEach((checkbox) => {
+      checkbox.onchange = function () {
+        const id = this.dataset.id;
+        products[id].isFavorite = this.checked;
+        saveAndSync();
+      };
+    });
 }
 
 function getCategory(value) {
@@ -131,7 +131,7 @@ function getCategory(value) {
     game: "Игры",
     software: "Программы",
     course: "Курсы",
-    subscription: "Подписки"
+    subscription: "Подписки",
   };
   return map[value] || value;
 }
@@ -148,11 +148,13 @@ function initForm() {
     const price = parseFloat(form.price.value);
 
     if (!title) return alert("Введите название товара");
-    if (!price || price < 0) return alert("Введите корректную цену");
+    if (isNaN(price) || price < 0) {
+      return alert("Цена должна быть числом ≥ 0");
+    }
     if (price > 1000000) return alert("Цена слишком высокая");
 
     const specs = {};
-    Object.keys(SPEC_FIELDS).forEach(key => {
+    Object.keys(SPEC_FIELDS).forEach((key) => {
       const el = $(key);
       if (el) {
         const value = el.value.trim();
@@ -169,7 +171,7 @@ function initForm() {
       category: form.category.value,
       platform: form.platform.value,
       image: form.image.value,
-      description: form.description.value
+      description: form.description.value,
     };
 
     if (Object.keys(specs).length > 0) {
@@ -219,7 +221,9 @@ function toggleSpecs() {
 
   const isHidden = fields.style.display === "none";
   fields.style.display = isHidden ? "block" : "none";
-  btn.textContent = isHidden ? "❌ Скрыть системные требования" : "⚙️ Показать системные требования";
+  btn.textContent = isHidden
+    ? "❌ Скрыть системные требования"
+    : "⚙️ Показать системные требования";
 }
 
 function resetForm() {
@@ -246,18 +250,18 @@ function resetForm() {
 }
 
 function clearSpecInputs() {
-  Object.keys(SPEC_FIELDS).forEach(key => {
+  Object.keys(SPEC_FIELDS).forEach((key) => {
     const el = $(key);
     if (el) el.value = "";
   });
 }
 
 function attachButtons() {
-  document.querySelectorAll(".edit").forEach(btn => {
+  document.querySelectorAll(".edit").forEach((btn) => {
     btn.onclick = () => editProduct(btn.dataset.id);
   });
 
-  document.querySelectorAll(".delete").forEach(btn => {
+  document.querySelectorAll(".delete").forEach((btn) => {
     btn.onclick = () => deleteProduct(btn.dataset.id);
   });
 }
@@ -315,7 +319,8 @@ function saveAndSync() {
 function applyGameTemplate() {
   $("category").value = "game";
   $("platform").value = "PC | Steam";
-  $("description").value = "Эпическая игра с открытым миром и захватывающим сюжетом.";
+  $("description").value =
+    "Эпическая игра с открытым миром и захватывающим сюжетом.";
   $("spec_os").value = "Windows 10/11 64-bit";
   $("spec_cpu").value = "Intel i5 или аналогичный AMD";
   $("spec_ram").value = "8 ГБ";
@@ -327,7 +332,8 @@ function applyGameTemplate() {
 function applySoftwareTemplate() {
   $("category").value = "software";
   $("platform").value = "Windows | macOS";
-  $("description").value = "Мощное программное обеспечение для работы и творчества.";
+  $("description").value =
+    "Мощное программное обеспечение для работы и творчества.";
   $("spec_os").value = "Windows 10+, macOS 12+";
   $("spec_cpu").value = "Intel Core i3 или аналог";
   $("spec_ram").value = "4 ГБ";
@@ -339,7 +345,8 @@ function applySoftwareTemplate() {
 function applyCourseTemplate() {
   $("category").value = "course";
   $("platform").value = "Онлайн";
-  $("description").value = "Обучение с нуля до профи. Видеоуроки, домашние задания, сертификат.";
+  $("description").value =
+    "Обучение с нуля до профи. Видеоуроки, домашние задания, сертификат.";
   $("spec_os").value = "Любая ОС с браузером";
   $("spec_cpu").value = "Любой";
   $("spec_ram").value = "2 ГБ";
@@ -351,7 +358,8 @@ function applyCourseTemplate() {
 function applySubscriptionTemplate() {
   $("category").value = "subscription";
   $("platform").value = "PC, PS, Xbox, Mobile";
-  $("description").value = "Месячная подписка на сервис с доступом ко всему контенту.";
+  $("description").value =
+    "Месячная подписка на сервис с доступом ко всему контенту.";
   $("spec_os").value = "Зависит от платформы";
   $("spec_cpu").value = "Не требуется";
   $("spec_ram").value = "Не требуется";
@@ -375,18 +383,24 @@ const fileInput = $("imageUpload");
 
 dropArea.addEventListener("click", () => fileInput.click());
 
-["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
-  dropArea.addEventListener(eventName, e => {
+["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+  dropArea.addEventListener(eventName, (e) => {
     e.preventDefault();
     e.stopPropagation();
   });
 });
 
-dropArea.addEventListener("dragenter", () => dropArea.classList.add("highlight"));
-dropArea.addEventListener("dragover", () => dropArea.classList.add("highlight"));
-dropArea.addEventListener("dragleave", () => dropArea.classList.remove("highlight"));
+dropArea.addEventListener("dragenter", () =>
+  dropArea.classList.add("highlight"),
+);
+dropArea.addEventListener("dragover", () =>
+  dropArea.classList.add("highlight"),
+);
+dropArea.addEventListener("dragleave", () =>
+  dropArea.classList.remove("highlight"),
+);
 
-dropArea.addEventListener("drop", e => {
+dropArea.addEventListener("drop", (e) => {
   dropArea.classList.remove("highlight");
   const files = e.dataTransfer.files;
   if (files.length) {
@@ -398,8 +412,10 @@ dropArea.addEventListener("drop", e => {
 
 // === Экспорт/Импорт ===
 function exportProducts() {
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(products, null, 2));
-  const downloadAnchorNode = document.createElement('a');
+  const dataStr =
+    "data:text/json;charset=utf-8," +
+    encodeURIComponent(JSON.stringify(products, null, 2));
+  const downloadAnchorNode = document.createElement("a");
   downloadAnchorNode.setAttribute("href", dataStr);
   downloadAnchorNode.setAttribute("download", "digitalstore-products.json");
   document.body.appendChild(downloadAnchorNode);
@@ -411,7 +427,7 @@ function importProducts() {
   const input = document.createElement("input");
   input.type = "file";
   input.accept = ".json";
-  input.onchange = e => {
+  input.onchange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
